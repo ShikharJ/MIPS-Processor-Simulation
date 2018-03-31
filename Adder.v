@@ -44,17 +44,16 @@ module Add(Z, A, B);
 
 endmodule
 
-`timescale 1 ps / 100 fs
+
 module adder1bit(sum, cout, a, b, cin);
 
 	output cout, sum;
 	input a, b, cin;
-	wire c1, c2, c3;
 
-	xor x1(sum, a, b, cin);			// sum = a xor b xor cin
-	and a1(c1, a, b);				// carry out = (a and b) or (cin and (a or b))
-	or o1(c2, a, b);
-	and a2(c3, c2, cin);
-	or or2(cout, c1, c3);
+	xor #(50) (sum, a, b, cin);			// sum = a xor b xor cin
+	and #(50) a1(c1, a, b);				// carry out = (a and b) or (cin and (a or b))
+	or #(50) o1(c2, a, b);
+	and #(50) a2(c3, c2, cin);
+	or #(50) or2(cout, c1, c3);
 
 endmodule 
