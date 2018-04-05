@@ -1,341 +1,335 @@
 // Register Module
 
-// Verilog code foro Decoder, MUX, D Flip-Flop and 32-bit Register.
+// Verilog code for Decoder, MUX, D Flip-Flop and 32-bit Register.
 
 `timescale 1 ps / 100 fs
-module RegisterFile(ReadData1, ReadData2, WriteData, ReadRegister1, ReadRegister2, WriteRegister, RegWrite, Reset, Clk);
+module RegisterFile(ReadData1, ReadData2, WriteData, ReadRegister1, ReadRegister2, WriteRegister, RegisterWrite, Reset, CLK);
 	
 	output[31:0] ReadData1, ReadData2;
 	input[4:0] ReadRegister1, ReadRegister2, WriteRegister;
 	input[31:0] WriteData;
-	input RegWrite, Reset, Clk;
+	input RegisterWrite, Reset, CLK;
 	integer i;
-	wire[31:0] WriteEn;
+	wire[31:0] WriteEnable;
 	wire[31:0] RegisterArray[0:31];
 
-	// Decoder Block
-	decoder Decoder1(WriteEn, RegWrite, WriteRegister);
-	register reg0 (RegArray[0], 32'b0, 1'b1, 1'b0, clk);
-	register reg1 (RegArray[1], WriteData, WriteEn[1], Reset, Clk);
-	register reg2 (RegArray[2], WriteData, WriteEn[2], Reset, Clk);
-	register reg3 (RegArray[3], WriteData, WriteEn[3], Reset, Clk);
-	register reg4 (RegArray[4], WriteData, WriteEn[4], Reset, Clk);
-	register reg5 (RegArray[5], WriteData, WriteEn[5], Reset, Clk);
-	register reg6 (RegArray[6], WriteData, WriteEn[6], Reset, Clk);
-	register reg7 (RegArray[7], WriteData, WriteEn[7], Reset, Clk);
-	register reg8 (RegArray[8], WriteData, WriteEn[8], Reset, Clk);
-	register reg9 (RegArray[9], WriteData, WriteEn[9], Reset, Clk);
-	register reg10 (RegArray[10], WriteData, WriteEn[10], Reset, Clk);
-	register reg11 (RegArray[11], WriteData, WriteEn[11], Reset, Clk);
-	register reg12 (RegArray[12], WriteData, WriteEn[12], Reset, Clk);
-	register reg13 (RegArray[13], WriteData, WriteEn[13], Reset, Clk);
-	register reg14 (RegArray[14], WriteData, WriteEn[14], Reset, Clk);
-	register reg15 (RegArray[15], WriteData, WriteEn[15], Reset, Clk);
-	register reg16 (RegArray[16], WriteData, WriteEn[16], Reset, Clk);
-	register reg17 (RegArray[17], WriteData, WriteEn[17], Reset, Clk);
-	register reg18 (RegArray[18], WriteData, WriteEn[18], Reset, Clk);
-	register reg19 (RegArray[19], WriteData, WriteEn[19], Reset, Clk);
-	register reg20 (RegArray[20], WriteData, WriteEn[20], Reset, Clk);
-	register reg21 (RegArray[21], WriteData, WriteEn[21], Reset, Clk);
-	register reg22 (RegArray[22], WriteData, WriteEn[22], Reset, Clk);
-	register reg23 (RegArray[23], WriteData, WriteEn[23], Reset, Clk);
-	register reg24 (RegArray[24], WriteData, WriteEn[24], Reset, Clk);
-	register reg25 (RegArray[25], WriteData, WriteEn[25], Reset, Clk);
-	register reg26 (RegArray[26], WriteData, WriteEn[26], Reset, Clk);
-	register reg27 (RegArray[27], WriteData, WriteEn[27], Reset, Clk);
-	register reg28 (RegArray[28], WriteData, WriteEn[28], Reset, Clk);
-	register reg29 (RegArray[29], WriteData, WriteEn[29], Reset, Clk);
-	register reg30 (RegArray[30], WriteData, WriteEn[30], Reset, Clk);
-	register reg31 (RegArray[31], WriteData, WriteEn[31], Reset, Clk); 
+	Decoder d1(WriteEnable, RegisterWrite, WriteRegister);
+	Register reg0(RegisterArray[0], 32'b0, 1'b1, 1'b0, clk);
+	Register reg1(RegisterArray[1], WriteData, WriteEnable[1], Reset, CLK);
+	Register reg2(RegisterArray[2], WriteData, WriteEnable[2], Reset, CLK);
+	Register reg3(RegisterArray[3], WriteData, WriteEnable[3], Reset, CLK);
+	Register reg4(RegisterArray[4], WriteData, WriteEnable[4], Reset, CLK);
+	Register reg5(RegisterArray[5], WriteData, WriteEnable[5], Reset, CLK);
+	Register reg6(RegisterArray[6], WriteData, WriteEnable[6], Reset, CLK);
+	Register reg7(RegisterArray[7], WriteData, WriteEnable[7], Reset, CLK);
+	Register reg8(RegisterArray[8], WriteData, WriteEnable[8], Reset, CLK);
+	Register reg9(RegisterArray[9], WriteData, WriteEnable[9], Reset, CLK);
+	Register reg10(RegisterArray[10], WriteData, WriteEnable[10], Reset, CLK);
+	Register reg11(RegisterArray[11], WriteData, WriteEnable[11], Reset, CLK);
+	Register reg12(RegisterArray[12], WriteData, WriteEnable[12], Reset, CLK);
+	Register reg13(RegisterArray[13], WriteData, WriteEnable[13], Reset, CLK);
+	Register reg14(RegisterArray[14], WriteData, WriteEnable[14], Reset, CLK);
+	Register reg15(RegisterArray[15], WriteData, WriteEnable[15], Reset, CLK);
+	Register reg16(RegisterArray[16], WriteData, WriteEnable[16], Reset, CLK);
+	Register reg17(RegisterArray[17], WriteData, WriteEnable[17], Reset, CLK);
+	Register reg18(RegisterArray[18], WriteData, WriteEnable[18], Reset, CLK);
+	Register reg19(RegisterArray[19], WriteData, WriteEnable[19], Reset, CLK);
+	Register reg20(RegisterArray[20], WriteData, WriteEnable[20], Reset, CLK);
+	Register reg21(RegisterArray[21], WriteData, WriteEnable[21], Reset, CLK);
+	Register reg22(RegisterArray[22], WriteData, WriteEnable[22], Reset, CLK);
+	Register reg23(RegisterArray[23], WriteData, WriteEnable[23], Reset, CLK);
+	Register reg24(RegisterArray[24], WriteData, WriteEnable[24], Reset, CLK);
+	Register reg25(RegisterArray[25], WriteData, WriteEnable[25], Reset, CLK);
+	Register reg26(RegisterArray[26], WriteData, WriteEnable[26], Reset, CLK);
+	Register reg27(RegisterArray[27], WriteData, WriteEnable[27], Reset, CLK);
+	Register reg28(RegisterArray[28], WriteData, WriteEnable[28], Reset, CLK);
+	Register reg29(RegisterArray[29], WriteData, WriteEnable[29], Reset, CLK);
+	Register reg30(RegisterArray[30], WriteData, WriteEnable[30], Reset, CLK);
+	Register reg31(RegisterArray[31], WriteData, WriteEnable[31], Reset, CLK);
 
-	// 32x32to32 Multiplexor1 Block
-    mux32x32to32 Mux1(ReadData1, RegArray[0], RegArray[1], RegArray[2], RegArray[3], RegArray[4], RegArray[5], RegArray[6], RegArray[7], RegArray[8], RegArray[9], RegArray[10], RegArray[11], RegArray[12], RegArray[13], RegArray[14], RegArray[15], RegArray[16], RegArray[17], RegArray[18], RegArray[19], RegArray[20], RegArray[21], RegArray[22], RegArray[23], RegArray[24], RegArray[25], RegArray[26], RegArray[27], RegArray[28], RegArray[29], RegArray[30], RegArray[31], ReadRegister1); 
-           
- 	// 32x32to32 Multiplexor2 Block
- 	mux32x32to32 Mux2(ReadData2, RegArray[0], RegArray[1], RegArray[2], RegArray[3], RegArray[4], RegArray[5], RegArray[6], RegArray[7], RegArray[8], RegArray[9], RegArray[10], RegArray[11], RegArray[12], RegArray[13], RegArray[14], RegArray[15], RegArray[16], RegArray[17], RegArray[18], RegArray[19], RegArray[20], RegArray[21], RegArray[22], RegArray[23], RegArray[24], RegArray[25], RegArray[26], RegArray[27], RegArray[28], RegArray[29], RegArray[30], RegArray[31], ReadRegister2);  
+    MUX32x32to32 mux1(ReadData1, RegisterArray[0], RegisterArray[1], RegisterArray[2], RegisterArray[3], RegisterArray[4], RegisterArray[5], RegisterArray[6], RegisterArray[7], RegisterArray[8], RegisterArray[9], RegisterArray[10], RegisterArray[11], RegisterArray[12], RegisterArray[13], RegisterArray[14], RegisterArray[15], RegisterArray[16], RegisterArray[17], RegisterArray[18], RegisterArray[19], RegisterArray[20], RegisterArray[21], RegisterArray[22], RegisterArray[23], RegisterArray[24], RegisterArray[25], RegisterArray[26], RegisterArray[27], RegisterArray[28], RegisterArray[29], RegisterArray[30], RegisterArray[31], ReadRegister1);
+
+ 	MUX32x32to32 mux2(ReadData2, RegisterArray[0], RegisterArray[1], RegisterArray[2], RegisterArray[3], RegisterArray[4], RegisterArray[5], RegisterArray[6], RegisterArray[7], RegisterArray[8], RegisterArray[9], RegisterArray[10], RegisterArray[11], RegisterArray[12], RegisterArray[13], RegisterArray[14], RegisterArray[15], RegisterArray[16], RegisterArray[17], RegisterArray[18], RegisterArray[19], RegisterArray[20], RegisterArray[21], RegisterArray[22], RegisterArray[23], RegisterArray[24], RegisterArray[25], RegisterArray[26], RegisterArray[27], RegisterArray[28], RegisterArray[29], RegisterArray[30], RegisterArray[31], ReadRegister2);
 
 endmodule
 
 
-//	D Flip-Flop Module.
-module DFlipFlop(Q, D, Reset, Clk);
+module DFlipFlop(Q, D, Reset, CLK);
 	
 	output Q;
-	input D, Reset, Clk;
-	reg Q;							// Indicate that Q is stateholding
+	input D, Reset, CLK;
+	reg Q;
 
-	always @(posedge Clk or posedge Reset)
+	always @(posedge CLK or posedge Reset)
 		if (Reset)
-			Q = 0;					// On reset, set to 0
+			Q = 0;
 		else
-			Q = D;					// Otherwise Q = D
+			Q = D;
 
 endmodule
 
 
-// 1-bit Register Module.
-module RegBit(BitOut, BitData, WriteEn, Reset, Clk);
+module RegisterBit(BitOut, BitData, WriteEnable, Reset, CLK);
 
-	output BitOut;						// 1-bit of Register
-	input BitData, WriteEn; 
-	input Reset, Clk;
-	wire d, f1, f2;						// Input of D Flip-Flop
+	output BitOut;
+	input BitData, WriteEnable;
+	input Reset, CLK;
+	wire D, F1, F2;
 	wire Reset;
 
-	and #(50) U1(f1, BitOut, (~WriteEn));
-	and #(50) U2(f2, BitData, WriteEn);
-	or  #(50) U3(d, f1, f2);
-	DFlipFlop DFF0(BitOut, d, Reset, Clk);
+	and #(50) a1(F1, BitOut, (~WriteEnable));
+	and #(50) a2(F2, BitData, WriteEnable);
+	or  #(50) o1(D, F1, F2);
+	DFlipFlop dff0(BitOut, D, Reset, CLK);
 
 endmodule
 
 
-// 32-bit Register Module.
-module Register(RegOut, RegIn, WriteEn, Reset, Clk);
+module Register(RegisterOutput, RegisterInput, WriteEnable, Reset, CLK);
 
-	output[31:0] RegOut;
-	input[31:0] RegIn;
-	input WriteEn, Reset, Clk;
-	
-	RegBit bit31(RegOut[31], RegIn[31], WriteEn, Reset, Clk);
-	RegBit bit30(RegOut[30], RegIn[30], WriteEn, Reset, Clk);
-	RegBit bit29(RegOut[29], RegIn[29], WriteEn, Reset, Clk);
-	RegBit bit28(RegOut[28], RegIn[28], WriteEn, Reset, Clk);
-	RegBit bit27(RegOut[27], RegIn[27], WriteEn, Reset, Clk);
-	RegBit bit26(RegOut[26], RegIn[26], WriteEn, Reset, Clk);
-	RegBit bit25(RegOut[25], RegIn[25], WriteEn, Reset, Clk);
-	RegBit bit24(RegOut[24], RegIn[24], WriteEn, Reset, Clk);
-	RegBit bit23(RegOut[23], RegIn[23], WriteEn, Reset, Clk);
-	RegBit bit22(RegOut[22], RegIn[22], WriteEn, Reset, Clk);
-	RegBit bit21(RegOut[21], RegIn[21], WriteEn, Reset, Clk);
-	RegBit bit20(RegOut[20], RegIn[20], WriteEn, Reset, Clk);
-	RegBit bit19(RegOut[19], RegIn[19], WriteEn, Reset, Clk);
-	RegBit bit18(RegOut[18], RegIn[18], WriteEn, Reset, Clk);
-	RegBit bit17(RegOut[17], RegIn[17], WriteEn, Reset, Clk);
-	RegBit bit16(RegOut[16], RegIn[16], WriteEn, Reset, Clk);
-	RegBit bit15(RegOut[15], RegIn[15], WriteEn, Reset, Clk);
-	RegBit bit14(RegOut[14], RegIn[14], WriteEn, Reset, Clk);
-	RegBit bit13(RegOut[13], RegIn[13], WriteEn, Reset, Clk);
-	RegBit bit12(RegOut[12], RegIn[12], WriteEn, Reset, Clk);
-	RegBit bit11(RegOut[11], RegIn[11], WriteEn, Reset, Clk);
-	RegBit bit10(RegOut[10], RegIn[10], WriteEn, Reset, Clk);
-	RegBit bit9 (RegOut[9], RegIn[9], WriteEn, Reset, Clk);
-	RegBit bit8 (RegOut[8], RegIn[8], WriteEn, Reset, Clk);
-	RegBit bit7 (RegOut[7], RegIn[7], WriteEn, Reset, Clk);
-	RegBit bit6 (RegOut[6], RegIn[6], WriteEn, Reset, Clk);
-	RegBit bit5 (RegOut[5], RegIn[5], WriteEn, Reset, Clk);
-	RegBit bit4 (RegOut[4], RegIn[4], WriteEn, Reset, Clk);
-	RegBit bit3 (RegOut[3], RegIn[3], WriteEn, Reset, Clk);
-	RegBit bit2 (RegOut[2], RegIn[2], WriteEn, Reset, Clk);
-	RegBit bit1 (RegOut[1], RegIn[1], WriteEn, Reset, Clk);
-	RegBit bit0 (RegOut[0], RegIn[0], WriteEn, Reset, Clk);
+	output[31:0] RegisterOutput;
+	input[31:0] RegisterInput;
+	input WriteEnable, Reset, CLK;
+
+	RegisterBit bit31(RegisterOutput[31], RegisterInput[31], WriteEnable, Reset, CLK);
+	RegisterBit bit30(RegisterOutput[30], RegisterInput[30], WriteEnable, Reset, CLK);
+	RegisterBit bit29(RegisterOutput[29], RegisterInput[29], WriteEnable, Reset, CLK);
+	RegisterBit bit28(RegisterOutput[28], RegisterInput[28], WriteEnable, Reset, CLK);
+	RegisterBit bit27(RegisterOutput[27], RegisterInput[27], WriteEnable, Reset, CLK);
+	RegisterBit bit26(RegisterOutput[26], RegisterInput[26], WriteEnable, Reset, CLK);
+	RegisterBit bit25(RegisterOutput[25], RegisterInput[25], WriteEnable, Reset, CLK);
+	RegisterBit bit24(RegisterOutput[24], RegisterInput[24], WriteEnable, Reset, CLK);
+	RegisterBit bit23(RegisterOutput[23], RegisterInput[23], WriteEnable, Reset, CLK);
+	RegisterBit bit22(RegisterOutput[22], RegisterInput[22], WriteEnable, Reset, CLK);
+	RegisterBit bit21(RegisterOutput[21], RegisterInput[21], WriteEnable, Reset, CLK);
+	RegisterBit bit20(RegisterOutput[20], RegisterInput[20], WriteEnable, Reset, CLK);
+	RegisterBit bit19(RegisterOutput[19], RegisterInput[19], WriteEnable, Reset, CLK);
+	RegisterBit bit18(RegisterOutput[18], RegisterInput[18], WriteEnable, Reset, CLK);
+	RegisterBit bit17(RegisterOutput[17], RegisterInput[17], WriteEnable, Reset, CLK);
+	RegisterBit bit16(RegisterOutput[16], RegisterInput[16], WriteEnable, Reset, CLK);
+	RegisterBit bit15(RegisterOutput[15], RegisterInput[15], WriteEnable, Reset, CLK);
+	RegisterBit bit14(RegisterOutput[14], RegisterInput[14], WriteEnable, Reset, CLK);
+	RegisterBit bit13(RegisterOutput[13], RegisterInput[13], WriteEnable, Reset, CLK);
+	RegisterBit bit12(RegisterOutput[12], RegisterInput[12], WriteEnable, Reset, CLK);
+	RegisterBit bit11(RegisterOutput[11], RegisterInput[11], WriteEnable, Reset, CLK);
+	RegisterBit bit10(RegisterOutput[10], RegisterInput[10], WriteEnable, Reset, CLK);
+	RegisterBit bit9(RegisterOutput[9], RegisterInput[9], WriteEnable, Reset, CLK);
+	RegisterBit bit8(RegisterOutput[8], RegisterInput[8], WriteEnable, Reset, CLK);
+	RegisterBit bit7(RegisterOutput[7], RegisterInput[7], WriteEnable, Reset, CLK);
+	RegisterBit bit6(RegisterOutput[6], RegisterInput[6], WriteEnable, Reset, CLK);
+	RegisterBit bit5(RegisterOutput[5], RegisterInput[5], WriteEnable, Reset, CLK);
+	RegisterBit bit4(RegisterOutput[4], RegisterInput[4], WriteEnable, Reset, CLK);
+	RegisterBit bit3(RegisterOutput[3], RegisterInput[3], WriteEnable, Reset, CLK);
+	RegisterBit bit2(RegisterOutput[2], RegisterInput[2], WriteEnable, Reset, CLK);
+	RegisterBit bit1(RegisterOutput[1], RegisterInput[1], WriteEnable, Reset, CLK);
+	RegisterBit bit0(RegisterOutput[0], RegisterInput[0], WriteEnable, Reset, CLK);
 
 endmodule
 
 
-// Decoder Module.
-module decoder(WriteEn, RegWrite, WriteRegister);
+module Decoder(WriteEnable, RegisterWrite, WriteRegister);
 
-	input RegWrite;
+	input RegisterWrite;
 	input[4:0] WriteRegister;
-	output[31:0] WriteEn;
-	wire[31:0] OE; 							// Output Enable
-	dec5to32 dec(OE, WriteRegister);
+	output[31:0] WriteEnable;
+	wire[31:0] OutputEnable;
+
+	Decoder5to32 d5t32(OutputEnable, WriteRegister);
+
 	assign 
-		WriteEn[0] = 0;
-	and  #(50) gate1(WriteEn[1],OE[1],RegWrite);
-	and  #(50) gate2(WriteEn[2],OE[2],RegWrite);
-	and  #(50) gate3(WriteEn[3],OE[3],RegWrite);
-	and  #(50) gate4(WriteEn[4],OE[4],RegWrite);
-	and  #(50) gate5(WriteEn[5],OE[5],RegWrite);
-	and  #(50) gate6(WriteEn[6],OE[6],RegWrite);
-	and  #(50) gate7(WriteEn[7],OE[7],RegWrite);
-	and  #(50) gate8(WriteEn[8],OE[8],RegWrite);
-	and  #(50) gate9(WriteEn[9],OE[9],RegWrite);
-	and  #(50) gate10(WriteEn[10],OE[10],RegWrite);
-	and  #(50) gate11(WriteEn[11],OE[11],RegWrite);
-	and  #(50) gate12(WriteEn[12],OE[12],RegWrite);
-	and  #(50) gate13(WriteEn[13],OE[13],RegWrite);
-	and  #(50) gate14(WriteEn[14],OE[14],RegWrite);
-	and  #(50) gate15(WriteEn[15],OE[15],RegWrite);
-	and  #(50) gate16(WriteEn[16],OE[16],RegWrite);
-	and  #(50) gate17(WriteEn[17],OE[17],RegWrite);
-	and  #(50) gate18(WriteEn[18],OE[18],RegWrite);
-	and  #(50) gate19(WriteEn[19],OE[19],RegWrite);
-	and  #(50) gate20(WriteEn[20],OE[20],RegWrite);
-	and  #(50) gate21(WriteEn[21],OE[21],RegWrite);
-	and  #(50) gate22(WriteEn[22],OE[22],RegWrite);
-	and  #(50) gate23(WriteEn[23],OE[23],RegWrite);
-	and  #(50) gate24(WriteEn[24],OE[24],RegWrite);
-	and  #(50) gate25(WriteEn[25],OE[25],RegWrite);
-	and  #(50) gate26(WriteEn[26],OE[26],RegWrite);
-	and  #(50) gate27(WriteEn[27],OE[27],RegWrite);
-	and  #(50) gate28(WriteEn[28],OE[28],RegWrite);
-	and  #(50) gate29(WriteEn[29],OE[29],RegWrite);
-	and  #(50) gate30(WriteEn[30],OE[30],RegWrite);
-	and  #(50) gate31(WriteEn[31],OE[31],RegWrite);
+		WriteEnable[0] = 0;
+		and  #(50) gate1(WriteEnable[1], OutputEnable[1], RegisterWrite);
+		and  #(50) gate2(WriteEnable[2], OutputEnable[2], RegisterWrite);
+		and  #(50) gate3(WriteEnable[3], OutputEnable[3], RegisterWrite);
+		and  #(50) gate4(WriteEnable[4], OutputEnable[4], RegisterWrite);
+		and  #(50) gate5(WriteEnable[5], OutputEnable[5], RegisterWrite);
+		and  #(50) gate6(WriteEnable[6], OutputEnable[6], RegisterWrite);
+		and  #(50) gate7(WriteEnable[7], OutputEnable[7], RegisterWrite);
+		and  #(50) gate8(WriteEnable[8], OutputEnable[8], RegisterWrite);
+		and  #(50) gate9(WriteEnable[9], OutputEnable[9], RegisterWrite);
+		and  #(50) gate10(WriteEnable[10], OutputEnable[10], RegisterWrite);
+		and  #(50) gate11(WriteEnable[11], OutputEnable[11], RegisterWrite);
+		and  #(50) gate12(WriteEnable[12], OutputEnable[12], RegisterWrite);
+		and  #(50) gate13(WriteEnable[13], OutputEnable[13], RegisterWrite);
+		and  #(50) gate14(WriteEnable[14], OutputEnable[14], RegisterWrite);
+		and  #(50) gate15(WriteEnable[15], OutputEnable[15], RegisterWrite);
+		and  #(50) gate16(WriteEnable[16], OutputEnable[16], RegisterWrite);
+		and  #(50) gate17(WriteEnable[17], OutputEnable[17], RegisterWrite);
+		and  #(50) gate18(WriteEnable[18], OutputEnable[18], RegisterWrite);
+		and  #(50) gate19(WriteEnable[19], OutputEnable[19], RegisterWrite);
+		and  #(50) gate20(WriteEnable[20], OutputEnable[20], RegisterWrite);
+		and  #(50) gate21(WriteEnable[21], OutputEnable[21], RegisterWrite);
+		and  #(50) gate22(WriteEnable[22], OutputEnable[22], RegisterWrite);
+		and  #(50) gate23(WriteEnable[23], OutputEnable[23], RegisterWrite);
+		and  #(50) gate24(WriteEnable[24], OutputEnable[24], RegisterWrite);
+		and  #(50) gate25(WriteEnable[25], OutputEnable[25], RegisterWrite);
+		and  #(50) gate26(WriteEnable[26], OutputEnable[26], RegisterWrite);
+		and  #(50) gate27(WriteEnable[27], OutputEnable[27], RegisterWrite);
+		and  #(50) gate28(WriteEnable[28], OutputEnable[28], RegisterWrite);
+		and  #(50) gate29(WriteEnable[29], OutputEnable[29], RegisterWrite);
+		and  #(50) gate30(WriteEnable[30], OutputEnable[30], RegisterWrite);
+		and  #(50) gate31(WriteEnable[31], OutputEnable[31], RegisterWrite);
 
 endmodule
 
 
-module andmore(g, a, b, c, d, e);
+module AndMore(G, A, B, C, D, E);
 
-	output g;
-	input a, b, c, d, e;
-	and #(50) and1(f1, a, b, c, d), and2(g, f1, e);
-
-endmodule
-
-
-module dec5to32(Out, Address);
-
-	output[31:0] Out;
-	input[4:0] Address; 					// Address of the Register
-
-	not #(50) inv4(Nota, Address[4]);
-	not #(50) inv3(Notb, Address[3]);
-	not #(50) inv2(Notc, Address[2]);
-	not #(50) inv1(Notd, Address[1]);
-	not #(50) inv0(Note, Address[0]);
-
-	andmore a0(Out[0], Nota, Notb, Notc, Notd, Note);
-	andmore a1(Out[1], Nota, Notb, Notc, Notd, Address[0]);
-	andmore a2(Out[2], Nota, Notb, Notc, Address[1], Note);
-	andmore a3(Out[3], Nota, Notb, Notc, Address[1], Address[0]);
-	andmore a4(Out[4], Nota, Notb, Address[2], Notd, Note);
-	andmore a5(Out[5], Nota, Notb, Address[2], Notd, Address[0]);
-	andmore a6(Out[6], Nota, Notb, Address[2], Address[1], Note);
-	andmore a7(Out[7], Nota, Notb, Address[2], Address[1], Address[0]);
-	andmore a8(Out[8], Nota, Address[3], Notc, Notd, Note);
-	andmore a9(Out[9], Nota, Address[3], Notc, Notd, Address[0]);
-	andmore a10(Out[10], Nota, Address[3], Notc, Address[1], Note);
-	andmore a11(Out[11], Nota, Address[3], Notc, Address[1], Address[0]);
-	andmore a12(Out[12], Nota, Address[3], Address[2], Notd, Note);
-	andmore a13(Out[13], Nota, Address[3], Address[2], Notd, Address[0]);
-	andmore a14(Out[14], Nota, Address[3], Address[2], Address[1], Note);
-	andmore a15(Out[15], Nota, Address[3], Address[2], Address[1], Address[0]);
-	andmore a16(Out[16], Address[4], Notb, Notc, Notd, Note);
-	andmore a17(Out[17], Address[4], Notb, Notc, Notd, Address[0]);
-	andmore a18(Out[18], Address[4], Notb, Notc, Address[1], Note);
-	andmore a19(Out[19], Address[4], Notb, Notc, Address[1], Address[0]);
-	andmore a20(Out[20], Address[4], Notb, Address[2], Notd, Note);
-	andmore a21(Out[21], Address[4], Notb, Address[2], Notd, Address[0]);
-	andmore a22(Out[22], Address[4], Notb, Address[2], Address[1], Note);
-	andmore a23(Out[23], Address[4], Notb, Address[2], Address[1], Address[0]);
-	andmore a24(Out[24], Address[4], Address[3], Notc, Notd, Note);
-	andmore a25(Out[25], Address[4], Address[3], Notc, Notd, Address[0]);
-	andmore a26(Out[26], Address[4], Address[3], Notc, Address[1], Note);
-	andmore a27(Out[27], Address[4], Address[3], Notc, Address[1], Address[0]);
-	andmore a28(Out[28], Address[4], Address[3], Address[2], Notd, Note);
-	andmore a29(Out[29], Address[4], Address[3], Address[2], Notd, Address[0]);
-	andmore a30(Out[30], Address[4], Address[3], Address[2], Address[1], Note);
-	andmore a31(Out[31], Address[4], Address[3], Address[2], Address[1], Address[0]);
+	output G;
+	input A, B, C, D, E;
+	and #(50) a1(F1, A, B, C, D), a2(G, F1, E);
 
 endmodule
 
 
-// 32-bit MUX Module.
-module mux32to1(Out, In, Select);
+module Decoder5to32(Output, Address);
+
+	output[31:0] Output;
+	input[4:0] Address;
+
+	not #(50) inv4(NotA, Address[4]);
+	not #(50) inv3(NotB, Address[3]);
+	not #(50) inv2(NotC, Address[2]);
+	not #(50) inv1(NotD, Address[1]);
+	not #(50) inv0(NotE, Address[0]);
+
+	AndMore am0(Output[0], NotA, NotB, NotC, NotD, NotE);
+	AndMore am1(Output[1], NotA, NotB, NotC, NotD, Address[0]);
+	AndMore am2(Output[2], NotA, NotB, NotC, Address[1], NotE);
+	AndMore am3(Output[3], NotA, NotB, NotC, Address[1], Address[0]);
+	AndMore am4(Output[4], NotA, NotB, Address[2], NotD, NotE);
+	AndMore am5(Output[5], NotA, NotB, Address[2], NotD, Address[0]);
+	AndMore am6(Output[6], NotA, NotB, Address[2], Address[1], NotE);
+	AndMore am7(Output[7], NotA, NotB, Address[2], Address[1], Address[0]);
+	AndMore am8(Output[8], NotA, Address[3], NotC, NotD, NotE);
+	AndMore am9(Output[9], NotA, Address[3], NotC, NotD, Address[0]);
+	AndMore am10(Output[10], NotA, Address[3], NotC, Address[1], NotE);
+	AndMore am11(Output[11], NotA, Address[3], NotC, Address[1], Address[0]);
+	AndMore am12(Output[12], NotA, Address[3], Address[2], NotD, NotE);
+	AndMore am13(Output[13], NotA, Address[3], Address[2], NotD, Address[0]);
+	AndMore am14(Output[14], NotA, Address[3], Address[2], Address[1], NotE);
+	AndMore am15(Output[15], NotA, Address[3], Address[2], Address[1], Address[0]);
+	AndMore am16(Output[16], Address[4], NotB, NotC, NotD, NotE);
+	AndMore am17(Output[17], Address[4], NotB, NotC, NotD, Address[0]);
+	AndMore am18(Output[18], Address[4], NotB, NotC, Address[1], NotE);
+	AndMore am19(Output[19], Address[4], NotB, NotC, Address[1], Address[0]);
+	AndMore am20(Output[20], Address[4], NotB, Address[2], NotD, NotE);
+	AndMore am21(Output[21], Address[4], NotB, Address[2], NotD, Address[0]);
+	AndMore am22(Output[22], Address[4], NotB, Address[2], Address[1], NotE);
+	AndMore am23(Output[23], Address[4], NotB, Address[2], Address[1], Address[0]);
+	AndMore am24(Output[24], Address[4], Address[3], NotC, NotD, NotE);
+	AndMore am25(Output[25], Address[4], Address[3], NotC, NotD, Address[0]);
+	AndMore am26(Output[26], Address[4], Address[3], NotC, Address[1], NotE);
+	AndMore am27(Output[27], Address[4], Address[3], NotC, Address[1], Address[0]);
+	AndMore am28(Output[28], Address[4], Address[3], Address[2], NotD, NotE);
+	AndMore am29(Output[29], Address[4], Address[3], Address[2], NotD, Address[0]);
+	AndMore am30(Output[30], Address[4], Address[3], Address[2], Address[1], NotE);
+	AndMore am31(Output[31], Address[4], Address[3], Address[2], Address[1], Address[0]);
+
+endmodule
+
+
+module MUX32to1(Output, Input, Select);
 	
-	output Out;
-	input[31:0] In; 
-	input[4:0] Select; 
-	wire[31:0] OE, f; 					// OE = Output Enable
+	output Output;
+	input[31:0] Input;
+	input[4:0] Select;
+	wire[31:0] OutputEnable, F;
 
-	dec5to32 dec1(OE, Select);
+	Decoder5to32 d5t32(OutputEnable, Select);
 
-	and  #(50) g0(f[0], OE[0], In[0]);
-	and  #(50) g1(f[1], OE[1], In[1]);
-	and  #(50) g2(f[2], OE[2], In[2]);
-	and  #(50) g3(f[3], OE[3], In[3]);
-	and  #(50) g4(f[4], OE[4], In[4]);
-	and  #(50) g5(f[5], OE[5], In[5]);
-	and  #(50) g6(f[6], OE[6], In[6]);
-	and  #(50) g7(f[7], OE[7], In[7]);
-	and  #(50) g8(f[8], OE[8], In[8]);
-	and  #(50) g9(f[9], OE[9], In[9]);
-	and  #(50) g10(f[10], OE[10], In[10]);
-	and  #(50) g11(f[11], OE[11], In[11]);
-	and  #(50) g12(f[12], OE[12], In[12]);
-	and  #(50) g13(f[13], OE[13], In[13]);
-	and  #(50) g14(f[14], OE[14], In[14]);
-	and  #(50) g15(f[15], OE[15], In[15]);
-	and  #(50) g16(f[16], OE[16], In[16]);
-	and  #(50) g17(f[17], OE[17], In[17]);
-	and  #(50) g18(f[18], OE[18], In[18]);
-	and  #(50) g19(f[19], OE[19], In[19]);
-	and  #(50) g20(f[20], OE[20], In[20]);
-	and  #(50) g21(f[21], OE[21], In[21]);
-	and  #(50) g22(f[22], OE[22], In[22]);
-	and  #(50) g23(f[23], OE[23], In[23]);
-	and  #(50) g24(f[24], OE[24], In[24]);
-	and  #(50) g25(f[25], OE[25], In[25]);
-	and  #(50) g26(f[26], OE[26], In[26]);
-	and  #(50) g27(f[27], OE[27], In[27]);
-	and  #(50) g28(f[28], OE[28], In[28]);
-	and  #(50) g29(f[29], OE[29], In[29]);
-	and  #(50) g30(f[30], OE[30], In[30]);
-	and  #(50) g31(f[31], OE[31], In[31]);
-	or #(50) gate3(g3, f[0], f[1], f[2], f[3]);
-	or #(50) gate4(g4, f[4], f[5], f[6], f[7]);
-	or #(50) gate5(g5, f[8], f[9], f[10], f[11]);
-	or #(50) gate6(g6, f[12], f[13], f[14], f[15]);
-	or #(50) gate7(g7, f[16], f[17], f[18], f[19]);
-	or #(50) gate8(g8, f[20], f[21], f[22], f[23]);
-	or #(50) gate9(g9, f[24], f[25], f[26], f[27]);
-	or #(50) gate10(g10, f[28], f[29], f[30], f[31]);
-	or #(50) gate11(g11, g3, g4, g5, g6);
-	or #(50) gate12(g12, g7, g8, g9, 10);
-	or #(50) gate(Out, g11, g12);
+	and  #(50) a0(F[0], OutputEnable[0], Input[0]);
+	and  #(50) a1(F[1], OutputEnable[1], Input[1]);
+	and  #(50) a2(F[2], OutputEnable[2], Input[2]);
+	and  #(50) a3(F[3], OutputEnable[3], Input[3]);
+	and  #(50) a4(F[4], OutputEnable[4], Input[4]);
+	and  #(50) a5(F[5], OutputEnable[5], Input[5]);
+	and  #(50) a6(F[6], OutputEnable[6], Input[6]);
+	and  #(50) a7(F[7], OutputEnable[7], Input[7]);
+	and  #(50) a8(F[8], OutputEnable[8], Input[8]);
+	and  #(50) a9(F[9], OutputEnable[9], Input[9]);
+	and  #(50) a10(F[10], OutputEnable[10], Input[10]);
+	and  #(50) a11(F[11], OutputEnable[11], Input[11]);
+	and  #(50) a12(F[12], OutputEnable[12], Input[12]);
+	and  #(50) a13(F[13], OutputEnable[13], Input[13]);
+	and  #(50) a14(F[14], OutputEnable[14], Input[14]);
+	and  #(50) a15(F[15], OutputEnable[15], Input[15]);
+	and  #(50) a16(F[16], OutputEnable[16], Input[16]);
+	and  #(50) a17(F[17], OutputEnable[17], Input[17]);
+	and  #(50) a18(F[18], OutputEnable[18], Input[18]);
+	and  #(50) a19(F[19], OutputEnable[19], Input[19]);
+	and  #(50) a20(F[20], OutputEnable[20], Input[20]);
+	and  #(50) a21(F[21], OutputEnable[21], Input[21]);
+	and  #(50) a22(F[22], OutputEnable[22], Input[22]);
+	and  #(50) a23(F[23], OutputEnable[23], Input[23]);
+	and  #(50) a24(F[24], OutputEnable[24], Input[24]);
+	and  #(50) a25(F[25], OutputEnable[25], Input[25]);
+	and  #(50) a26(F[26], OutputEnable[26], Input[26]);
+	and  #(50) a27(F[27], OutputEnable[27], Input[27]);
+	and  #(50) a28(F[28], OutputEnable[28], Input[28]);
+	and  #(50) a29(F[29], OutputEnable[29], Input[29]);
+	and  #(50) a30(F[30], OutputEnable[30], Input[30]);
+	and  #(50) a31(F[31], OutputEnable[31], Input[31]);
+	or #(50) o3(G3, F[0], F[1], F[2], F[3]);
+	or #(50) o4(G4, F[4], F[5], F[6], F[7]);
+	or #(50) o5(G5, F[8], F[9], F[10], F[11]);
+	or #(50) o6(G6, F[12], F[13], F[14], F[15]);
+	or #(50) o7(G7, F[16], F[17], F[18], F[19]);
+	or #(50) o8(G8, F[20], F[21], F[22], F[23]);
+	or #(50) o9(G9, F[24], F[25], F[26], F[27]);
+	or #(50) o10(G10, F[28], F[29], F[30], F[31]);
+	or #(50) o11(G11, G3, G4, G5, G6);
+	or #(50) o12(G12, G7, G8, G9, 10);
+	or #(50) o(Output, G11, G12);
 
 endmodule
 
 
-module mux32x32to32(ReadData, In0, In1, In2, In3, In4, In5, In6, In7, In8, In9, In10, In11, In12, In13, In14, In15, In16, In17, In18, In19, In20, In21, In22, In23, In24, In25, In26, In27, In28, In29, In30, In31, ReadRegister);
+module MUX32x32to32(ReadData, Input0, Input1, Input2, Input3, Input4, Input5, Input6, Input7, Input8, Input9, Input10, Input11, Input12, Input13, Input14, Input15, Input16, Input17, Input18, Input19, Input20, Input21, Input22, Input23, Input24, Input25, Input26, Input27, Input28, Input29, Input30, Input31, ReadRegister);
 
 	output [31:0] ReadData;
-	input[31:0] In0, In1, In2, In3, In4, In5, In6, In7, In8, In9, In10, In11, In12, In13, In14, In15, In16, In17, In18, In19, In20, In21, In22, In23, In24, In25, In26, In27, In28, In29, In30, In31;
+	input[31:0] Input0, Input1, Input2, Input3, Input4, Input5, Input6, Input7, Input8, Input9, Input10, Input11, Input12, Input13, Input14, Input15, Input16, Input17, Input18, Input19, Input20, Input21, Input22, Input23, Input24, Input25, Input26, Input27, Input28, Input29, Input30, Input31;
 	input[4:0] ReadRegister;
-	reg[31:0] ArrayReg[0:31];
+	reg[31:0] ArrayRegister[0:31];
 	integer j;
-	
+
 	always @(*)
 		begin
 			for (j = 0; j <= 31; j = j + 1)
-				ArrayReg[j] = {In31[j], In30[j], In29[j], In28[j], In27[j], In26[j], In25[j], In24[j], In23[j], In22[j], In21[j], In20[j], In19[j], In18[j], In17[j], In16[j], In15[j], In14[j], In13[j], In12[j], In11[j], In10[j], In9[j], In8[j], In7[j], In6[j], In5[j], In4[j], In3[j], In2[j], In1[j], In0[j]};
+				ArrayRegister[j] = {Input31[j], Input30[j], Input29[j], Input28[j], Input27[j], Input26[j], Input25[j], Input24[j], Input23[j], Input22[j], Input21[j], Input20[j], Input19[j], Input18[j], Input17[j], Input16[j], Input15[j], Input14[j], Input13[j], Input12[j], Input11[j], Input10[j], Input9[j], Input8[j], Input7[j], Input6[j], Input5[j], Input4[j], Input3[j], Input2[j], Input1[j], Input0[j]};
 		end
-	
-	mux32to1  mux0(ReadData[0], ArrayReg[0], ReadRegister);
-	mux32to1  mux1(ReadData[1], ArrayReg[1], ReadRegister);
-	mux32to1  mux2(ReadData[2], ArrayReg[2], ReadRegister);
-	mux32to1  mux3(ReadData[3], ArrayReg[3], ReadRegister);
-	mux32to1  mux4(ReadData[4], ArrayReg[4], ReadRegister);
-	mux32to1  mux5(ReadData[5], ArrayReg[5], ReadRegister);
-	mux32to1  mux6(ReadData[6], ArrayReg[6], ReadRegister);
-	mux32to1  mux7(ReadData[7], ArrayReg[7], ReadRegister);
-	mux32to1  mux8(ReadData[8], ArrayReg[8], ReadRegister);
-	mux32to1  mux9(ReadData[9], ArrayReg[9], ReadRegister);
-	mux32to1  mux10(ReadData[10], ArrayReg[10], ReadRegister);
-	mux32to1  mux11(ReadData[11], ArrayReg[11], ReadRegister); 
-	mux32to1  mux12(ReadData[12], ArrayReg[12], ReadRegister);
-	mux32to1  mux13(ReadData[13], ArrayReg[13], ReadRegister);
-	mux32to1  mux14(ReadData[14], ArrayReg[14], ReadRegister);
-	mux32to1  mux15(ReadData[15], ArrayReg[15], ReadRegister); 
-	mux32to1  mux16(ReadData[16], ArrayReg[16], ReadRegister);
-	mux32to1  mux17(ReadData[17], ArrayReg[17], ReadRegister);
-	mux32to1  mux18(ReadData[18], ArrayReg[18], ReadRegister);
-	mux32to1  mux19(ReadData[19], ArrayReg[19], ReadRegister);
-	mux32to1  mux20(ReadData[20], ArrayReg[20], ReadRegister);
-	mux32to1  mux21(ReadData[21], ArrayReg[21], ReadRegister);
-	mux32to1  mux22(ReadData[22], ArrayReg[22], ReadRegister);
-	mux32to1  mux23(ReadData[23], ArrayReg[23], ReadRegister);
-	mux32to1  mux24(ReadData[24], ArrayReg[24], ReadRegister);
-	mux32to1  mux25(ReadData[25], ArrayReg[25], ReadRegister);
-	mux32to1  mux26(ReadData[26], ArrayReg[26], ReadRegister);
-	mux32to1  mux27(ReadData[27], ArrayReg[27], ReadRegister);
-	mux32to1  mux28(ReadData[28], ArrayReg[28], ReadRegister);
-	mux32to1  mux29(ReadData[29], ArrayReg[29], ReadRegister);
-	mux32to1  mux30(ReadData[30], ArrayReg[30], ReadRegister);
-	mux32to1  mux31(ReadData[31], ArrayReg[31], ReadRegister);
+
+	MUX32to1 mux0(ReadData[0], ArrayRegister[0], ReadRegister);
+	MUX32to1 mux1(ReadData[1], ArrayRegister[1], ReadRegister);
+	MUX32to1 mux2(ReadData[2], ArrayRegister[2], ReadRegister);
+	MUX32to1 mux3(ReadData[3], ArrayRegister[3], ReadRegister);
+	MUX32to1 mux4(ReadData[4], ArrayRegister[4], ReadRegister);
+	MUX32to1 mux5(ReadData[5], ArrayRegister[5], ReadRegister);
+	MUX32to1 mux6(ReadData[6], ArrayRegister[6], ReadRegister);
+	MUX32to1 mux7(ReadData[7], ArrayRegister[7], ReadRegister);
+	MUX32to1 mux8(ReadData[8], ArrayRegister[8], ReadRegister);
+	MUX32to1 mux9(ReadData[9], ArrayRegister[9], ReadRegister);
+	MUX32to1 mux10(ReadData[10], ArrayRegister[10], ReadRegister);
+	MUX32to1 mux11(ReadData[11], ArrayRegister[11], ReadRegister);
+	MUX32to1 mux12(ReadData[12], ArrayRegister[12], ReadRegister);
+	MUX32to1 mux13(ReadData[13], ArrayRegister[13], ReadRegister);
+	MUX32to1 mux14(ReadData[14], ArrayRegister[14], ReadRegister);
+	MUX32to1 mux15(ReadData[15], ArrayRegister[15], ReadRegister);
+	MUX32to1 mux16(ReadData[16], ArrayRegister[16], ReadRegister);
+	MUX32to1 mux17(ReadData[17], ArrayRegister[17], ReadRegister);
+	MUX32to1 mux18(ReadData[18], ArrayRegister[18], ReadRegister);
+	MUX32to1 mux19(ReadData[19], ArrayRegister[19], ReadRegister);
+	MUX32to1 mux20(ReadData[20], ArrayRegister[20], ReadRegister);
+	MUX32to1 mux21(ReadData[21], ArrayRegister[21], ReadRegister);
+	MUX32to1 mux22(ReadData[22], ArrayRegister[22], ReadRegister);
+	MUX32to1 mux23(ReadData[23], ArrayRegister[23], ReadRegister);
+	MUX32to1 mux24(ReadData[24], ArrayRegister[24], ReadRegister);
+	MUX32to1 mux25(ReadData[25], ArrayRegister[25], ReadRegister);
+	MUX32to1 mux26(ReadData[26], ArrayRegister[26], ReadRegister);
+	MUX32to1 mux27(ReadData[27], ArrayRegister[27], ReadRegister);
+	MUX32to1 mux28(ReadData[28], ArrayRegister[28], ReadRegister);
+	MUX32to1 mux29(ReadData[29], ArrayRegister[29], ReadRegister);
+	MUX32to1 mux30(ReadData[30], ArrayRegister[30], ReadRegister);
+	MUX32to1 mux31(ReadData[31], ArrayRegister[31], ReadRegister);
 
 endmodule

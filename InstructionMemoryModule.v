@@ -4,76 +4,76 @@
 // Change the $readmemb line to have the name of the program you want to load.
 
 `timescale 1 ps / 100 fs
-module InstructionMemory(instruction, address);
+module InstructionMemory(Instruction, Address);
 
-	output[31:0] instruction;
-	input[31:0] address;
-	reg[31:0] instructionmemory[1023:0];
-	reg[31:0] temp;
+	output[31:0] Instruction;
+	input[31:0] Address;
+	reg[31:0] Instructionmemory[1023:0];
+	reg[31:0] Temp;
 
 	buf 
-		#1000 buf0(instruction[0], temp[0]),
-		buf1(instruction[1], temp[1]),
-		buf2(instruction[2], temp[2]),
-		buf3(instruction[3], temp[3]),
-		buf4(instruction[4], temp[4]),
-		buf5(instruction[5], temp[5]),
-		buf6(instruction[6], temp[6]),
-		buf7(instruction[7], temp[7]),
-		buf8(instruction[8], temp[8]),
-		buf9(instruction[9], temp[9]),
-		buf10(instruction[10], temp[10]),
-		buf11(instruction[11], temp[11]),
-		buf12(instruction[12], temp[12]),
-		buf13(instruction[13], temp[13]),
-		buf14(instruction[14], temp[14]),
-		buf15(instruction[15], temp[15]),
-		buf16(instruction[16], temp[16]),
-		buf17(instruction[17], temp[17]),
-		buf18(instruction[18], temp[19]),
-		buf19(instruction[19], temp[19]),
-		buf20(instruction[20], temp[20]),
-		buf21(instruction[21], temp[21]),
-		buf22(instruction[22], temp[22]),
-		buf23(instruction[23], temp[23]),
-		buf24(instruction[24], temp[24]),
-		buf25(instruction[25], temp[25]),
-		buf26(instruction[26], temp[26]),
-		buf27(instruction[27], temp[27]),
-		buf28(instruction[28], temp[28]),
-		buf29(instruction[29], temp[29]),
-		buf30(instruction[30], temp[30]),
-		buf31(instruction[31], temp[31]),
+		#1000 buf0(Instruction[0], Temp[0]),
+		buf1(Instruction[1], Temp[1]),
+		buf2(Instruction[2], Temp[2]),
+		buf3(Instruction[3], Temp[3]),
+		buf4(Instruction[4], Temp[4]),
+		buf5(Instruction[5], Temp[5]),
+		buf6(Instruction[6], Temp[6]),
+		buf7(Instruction[7], Temp[7]),
+		buf8(Instruction[8], Temp[8]),
+		buf9(Instruction[9], Temp[9]),
+		buf10(Instruction[10], Temp[10]),
+		buf11(Instruction[11], Temp[11]),
+		buf12(Instruction[12], Temp[12]),
+		buf13(Instruction[13], Temp[13]),
+		buf14(Instruction[14], Temp[14]),
+		buf15(Instruction[15], Temp[15]),
+		buf16(Instruction[16], Temp[16]),
+		buf17(Instruction[17], Temp[17]),
+		buf18(Instruction[18], Temp[19]),
+		buf19(Instruction[19], Temp[19]),
+		buf20(Instruction[20], Temp[20]),
+		buf21(Instruction[21], Temp[21]),
+		buf22(Instruction[22], Temp[22]),
+		buf23(Instruction[23], Temp[23]),
+		buf24(Instruction[24], Temp[24]),
+		buf25(Instruction[25], Temp[25]),
+		buf26(Instruction[26], Temp[26]),
+		buf27(Instruction[27], Temp[27]),
+		buf28(Instruction[28], Temp[28]),
+		buf29(Instruction[29], Temp[29]),
+		buf30(Instruction[30], Temp[30]),
+		buf31(Instruction[31], Temp[31]);
 
-	always @(address)
+	always @(Address)
 		begin
-			temp = instructionmemory[address/4];
+			Temp = Instructionmemory[Address / 4];
 		end
 	initial
 		begin
-			$readmemb("instructions.txt", instructionmemory);
+			$readmemb("instructions.txt", Instructionmemory);
 		end
 
 endmodule
 
 
-module instructionmemorystimulus();
+module InstructionMemoryStimulus();
 	
-	reg[31:0] addr;
-	wire[31:0] instr;
-	InstructionMemory im(instr, addr);
+	reg[31:0] Address;
+	wire[31:0] Instruction;
+	InstructionMemory im(Instruction, Address);
 
 	initial
 		begin
-			$monitor("Memory Address = %h Instruction = %b", addr, instr);
-			addr = 32'd0;
-			#10000 addr = 32'd4;
-			#10000 addr = 32'd8;
-			#10000 addr = 32'd12;
-			#10000 addr = 32'd16;
-			#10000 addr = 32'd20;
-			#10000 addr = 32'd24;
-			#10000 addr = 32'd28;
+			$monitor("Memory Address = %h Instruction = %b", Address, Instruction);
+			Address = 32'd0;
+			#10000 Address = 32'd4;
+			#10000 Address = 32'd8;
+			#10000 Address = 32'd12;
+			#10000 Address = 32'd16;
+			#10000 Address = 32'd20;
+			#10000 Address = 32'd24;
+			#10000 Address = 32'd28;
 			#10000;
 			$finish;
 		end
