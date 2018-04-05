@@ -51,7 +51,7 @@ module InstructionMemory(Instruction, Address);
 		end
 	initial
 		begin
-			$readmemb("instructions.txt", Instructionmemory);
+			$readmemb("/home/shikhar/MIPS-Processor-Simulation/src/instructions.txt", Instructionmemory);
 		end
 
 endmodule

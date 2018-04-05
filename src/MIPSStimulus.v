@@ -8,14 +8,14 @@ module MIPSStimulus();
 	parameter ClockDelay = 5000;
 	reg CLK, Reset;
 
-	MIPSPipeline MIPS(CLK, Reset);
+	MIPSPipeline mips(CLK, Reset);
 	initial CLK = 0;
 	always #(ClockDelay / 2) CLK = ~CLK;
 	initial 
 		begin
-			reset = 1;
+			Reset = 1;
 			#(ClockDelay / 4);
-			reset = 0;
+			Reset = 0;
 		end
 
 endmodule

@@ -59,7 +59,7 @@ module MIPSPipeline(CLK, Reset);
 	ZeroExtension ze0(ZeroExtensionOutput, Imm16);
 	MUX2x32to32 mux0(Im16_Extension, SignExtensionOutput, ZeroExtensionOutput, SignZero);
 
-	JRControl_Block JRControl_Block1(JRControl, ALUOperation, Function);
+	JRControlUnit jrcu0(JRControl, ALUOperation, Function);
 
 	DiscardInstructions di0(ID_flush, IFFlush, JumpControl, BNEControl, EX_JRControl);
 

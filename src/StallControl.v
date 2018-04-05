@@ -23,26 +23,26 @@ module StallControl(PC_WriteEnable, IFID_WriteEnable, StallFlush, EX_MemoryRead,
 
 	xor #(50) x5(XorRtRt[4], EX_rt[4], ID_rt[4]);
 	xor #(50) x6(XorRtRt[3], EX_rt[3], ID_rt[3]);
-	xor #(50) x6(XorRtRt[2], EX_rt[2], ID_rt[2]);
-	xor #(50) x7(XorRtRt[1], EX_rt[1], ID_rt[1]);
-	xor #(50) x8(XorRtRt[0], EX_rt[0], ID_rt[0]);
+	xor #(50) x7(XorRtRt[2], EX_rt[2], ID_rt[2]);
+	xor #(50) x8(XorRtRt[1], EX_rt[1], ID_rt[1]);
+	xor #(50) x9(XorRtRt[0], EX_rt[0], ID_rt[0]);
 	or #(50) o1(OrRtRt, XorRtRt[4], XorRtRt[3], XorRtRt[2], XorRtRt[1], XorRtRt[0]);
 	not #(50) inv1(NotOrRtRt, OrRtRt);
 
-	xor #(50) x9(XorOpcodeLW[5], ID_Op[5], 1'b1);
-	xor #(50) x10(XorOpcodeLW[4], ID_Op[4], 1'b0);
-	xor #(50) x11(XorOpcodeLW[3], ID_Op[3], 1'b0);
-	xor #(50) x12(XorOpcodeLW[2], ID_Op[2], 1'b0);
-	xor #(50) x13(XorOpcodeLW[1], ID_Op[1], 1'b1);
-	xor #(50) x14(XorOpcodeLW[0], ID_Op[0], 1'b1);
+	xor #(50) x10(XorOpcodeLW[5], ID_Op[5], 1'b1);
+	xor #(50) x11(XorOpcodeLW[4], ID_Op[4], 1'b0);
+	xor #(50) x12(XorOpcodeLW[3], ID_Op[3], 1'b0);
+	xor #(50) x13(XorOpcodeLW[2], ID_Op[2], 1'b0);
+	xor #(50) x14(XorOpcodeLW[1], ID_Op[1], 1'b1);
+	xor #(50) x15(XorOpcodeLW[0], ID_Op[0], 1'b1);
 	or #(50) o2(EC1, XorOpcodeLW[5], XorOpcodeLW[4], XorOpcodeLW[3], XorOpcodeLW[2], XorOpcodeLW[1], XorOpcodeLW[0]);
 
-	xor #(50) x15(XorOpcodeXorI[5], ID_Op[5], 1'b0);
-	xor #(50) x16(XorOpcodeXorI[4], ID_Op[4], 1'b0);
-	xor #(50) x17(XorOpcodeXorI[3], ID_Op[3], 1'b1);
-	xor #(50) x18(XorOpcodeXorI[2], ID_Op[2], 1'b1);
-	xor #(50) x19(XorOpcodeXorI[1], ID_Op[1], 1'b1);
-	xor #(50) x20(XorOpcodeXorI[0], ID_Op[0], 1'b0);
+	xor #(50) x16(XorOpcodeXorI[5], ID_Op[5], 1'b0);
+	xor #(50) x17(XorOpcodeXorI[4], ID_Op[4], 1'b0);
+	xor #(50) x18(XorOpcodeXorI[3], ID_Op[3], 1'b1);
+	xor #(50) x19(XorOpcodeXorI[2], ID_Op[2], 1'b1);
+	xor #(50) x20(XorOpcodeXorI[1], ID_Op[1], 1'b1);
+	xor #(50) x21(XorOpcodeXorI[0], ID_Op[0], 1'b0);
 	or #(50) o3(EC2, XorOpcodeXorI[5], XorOpcodeXorI[4], XorOpcodeXorI[3], XorOpcodeXorI[2], XorOpcodeXorI[1], XorOpcodeXorI[0]);
 
 	and #(50) a0(XorOp, EC1, EC2);
