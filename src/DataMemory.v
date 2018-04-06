@@ -11,7 +11,8 @@ module DataMemory(Data, Address, WriteData, WriteEnable, MemoryRead, CLK);
 	reg[7:0] Datamemory[1023:0];
 	reg[31:0] Temp;
 
-	buf #1000 buf0(Data[0], Temp[0]),
+	buf
+		#1000 buf0(Data[0], Temp[0]),
 		buf1(Data[1], Temp[1]),
 		buf2(Data[2], Temp[2]),
 		buf3(Data[3], Temp[3]),

@@ -13,8 +13,8 @@ module RegisterFile(ReadData1, ReadData2, WriteData, ReadRegister1, ReadRegister
 	wire[31:0] WriteEnable;
 	wire[31:0] RegisterArray[0:31];
 
-	Decoder d1(WriteEnable, RegisterWrite, WriteRegister);
-	Register reg0(RegisterArray[0], 32'b0, 1'b1, 1'b0, clk);
+	Decoder d0(WriteEnable, RegisterWrite, WriteRegister);
+	Register reg0(RegisterArray[0], 32'b0, 1'b1, 1'b0, CLK);
 	Register reg1(RegisterArray[1], WriteData, WriteEnable[1], Reset, CLK);
 	Register reg2(RegisterArray[2], WriteData, WriteEnable[2], Reset, CLK);
 	Register reg3(RegisterArray[3], WriteData, WriteEnable[3], Reset, CLK);
@@ -47,9 +47,9 @@ module RegisterFile(ReadData1, ReadData2, WriteData, ReadRegister1, ReadRegister
 	Register reg30(RegisterArray[30], WriteData, WriteEnable[30], Reset, CLK);
 	Register reg31(RegisterArray[31], WriteData, WriteEnable[31], Reset, CLK);
 
-    MUX32x32to32 mux1(ReadData1, RegisterArray[0], RegisterArray[1], RegisterArray[2], RegisterArray[3], RegisterArray[4], RegisterArray[5], RegisterArray[6], RegisterArray[7], RegisterArray[8], RegisterArray[9], RegisterArray[10], RegisterArray[11], RegisterArray[12], RegisterArray[13], RegisterArray[14], RegisterArray[15], RegisterArray[16], RegisterArray[17], RegisterArray[18], RegisterArray[19], RegisterArray[20], RegisterArray[21], RegisterArray[22], RegisterArray[23], RegisterArray[24], RegisterArray[25], RegisterArray[26], RegisterArray[27], RegisterArray[28], RegisterArray[29], RegisterArray[30], RegisterArray[31], ReadRegister1);
+    MUX32x32to32 mux0(ReadData1, RegisterArray[0], RegisterArray[1], RegisterArray[2], RegisterArray[3], RegisterArray[4], RegisterArray[5], RegisterArray[6], RegisterArray[7], RegisterArray[8], RegisterArray[9], RegisterArray[10], RegisterArray[11], RegisterArray[12], RegisterArray[13], RegisterArray[14], RegisterArray[15], RegisterArray[16], RegisterArray[17], RegisterArray[18], RegisterArray[19], RegisterArray[20], RegisterArray[21], RegisterArray[22], RegisterArray[23], RegisterArray[24], RegisterArray[25], RegisterArray[26], RegisterArray[27], RegisterArray[28], RegisterArray[29], RegisterArray[30], RegisterArray[31], ReadRegister1);
 
- 	MUX32x32to32 mux2(ReadData2, RegisterArray[0], RegisterArray[1], RegisterArray[2], RegisterArray[3], RegisterArray[4], RegisterArray[5], RegisterArray[6], RegisterArray[7], RegisterArray[8], RegisterArray[9], RegisterArray[10], RegisterArray[11], RegisterArray[12], RegisterArray[13], RegisterArray[14], RegisterArray[15], RegisterArray[16], RegisterArray[17], RegisterArray[18], RegisterArray[19], RegisterArray[20], RegisterArray[21], RegisterArray[22], RegisterArray[23], RegisterArray[24], RegisterArray[25], RegisterArray[26], RegisterArray[27], RegisterArray[28], RegisterArray[29], RegisterArray[30], RegisterArray[31], ReadRegister2);
+ 	MUX32x32to32 mux1(ReadData2, RegisterArray[0], RegisterArray[1], RegisterArray[2], RegisterArray[3], RegisterArray[4], RegisterArray[5], RegisterArray[6], RegisterArray[7], RegisterArray[8], RegisterArray[9], RegisterArray[10], RegisterArray[11], RegisterArray[12], RegisterArray[13], RegisterArray[14], RegisterArray[15], RegisterArray[16], RegisterArray[17], RegisterArray[18], RegisterArray[19], RegisterArray[20], RegisterArray[21], RegisterArray[22], RegisterArray[23], RegisterArray[24], RegisterArray[25], RegisterArray[26], RegisterArray[27], RegisterArray[28], RegisterArray[29], RegisterArray[30], RegisterArray[31], ReadRegister2);
 
 endmodule
 
@@ -69,18 +69,18 @@ module DFlipFlop(Q, D, Reset, CLK);
 endmodule
 
 
-module RegisterBit(BitOut, BitData, WriteEnable, Reset, CLK);
+module RegisterBit(BitOutput, BitData, WriteEnable, Reset, CLK);
 
-	output BitOut;
+	output BitOutput;
 	input BitData, WriteEnable;
 	input Reset, CLK;
 	wire D, F1, F2;
 	wire Reset;
 
-	and #(50) a1(F1, BitOut, (~WriteEnable));
-	and #(50) a2(F2, BitData, WriteEnable);
-	or  #(50) o1(D, F1, F2);
-	DFlipFlop dff0(BitOut, D, Reset, CLK);
+	and #(50) a0(F1, BitOutput, (~WriteEnable));
+	and #(50) a1(F2, BitData, WriteEnable);
+	or  #(50) o0(D, F1, F2);
+	DFlipFlop dff0(BitOutput, D, Reset, CLK);
 
 endmodule
 
@@ -129,46 +129,46 @@ endmodule
 
 module Decoder(WriteEnable, RegisterWrite, WriteRegister);
 
+	output[31:0] WriteEnable;
 	input RegisterWrite;
 	input[4:0] WriteRegister;
-	output[31:0] WriteEnable;
 	wire[31:0] OutputEnable;
 
 	Decoder5to32 d5t32(OutputEnable, WriteRegister);
 
 	assign 
 		WriteEnable[0] = 0;
-		and  #(50) gate1(WriteEnable[1], OutputEnable[1], RegisterWrite);
-		and  #(50) gate2(WriteEnable[2], OutputEnable[2], RegisterWrite);
-		and  #(50) gate3(WriteEnable[3], OutputEnable[3], RegisterWrite);
-		and  #(50) gate4(WriteEnable[4], OutputEnable[4], RegisterWrite);
-		and  #(50) gate5(WriteEnable[5], OutputEnable[5], RegisterWrite);
-		and  #(50) gate6(WriteEnable[6], OutputEnable[6], RegisterWrite);
-		and  #(50) gate7(WriteEnable[7], OutputEnable[7], RegisterWrite);
-		and  #(50) gate8(WriteEnable[8], OutputEnable[8], RegisterWrite);
-		and  #(50) gate9(WriteEnable[9], OutputEnable[9], RegisterWrite);
-		and  #(50) gate10(WriteEnable[10], OutputEnable[10], RegisterWrite);
-		and  #(50) gate11(WriteEnable[11], OutputEnable[11], RegisterWrite);
-		and  #(50) gate12(WriteEnable[12], OutputEnable[12], RegisterWrite);
-		and  #(50) gate13(WriteEnable[13], OutputEnable[13], RegisterWrite);
-		and  #(50) gate14(WriteEnable[14], OutputEnable[14], RegisterWrite);
-		and  #(50) gate15(WriteEnable[15], OutputEnable[15], RegisterWrite);
-		and  #(50) gate16(WriteEnable[16], OutputEnable[16], RegisterWrite);
-		and  #(50) gate17(WriteEnable[17], OutputEnable[17], RegisterWrite);
-		and  #(50) gate18(WriteEnable[18], OutputEnable[18], RegisterWrite);
-		and  #(50) gate19(WriteEnable[19], OutputEnable[19], RegisterWrite);
-		and  #(50) gate20(WriteEnable[20], OutputEnable[20], RegisterWrite);
-		and  #(50) gate21(WriteEnable[21], OutputEnable[21], RegisterWrite);
-		and  #(50) gate22(WriteEnable[22], OutputEnable[22], RegisterWrite);
-		and  #(50) gate23(WriteEnable[23], OutputEnable[23], RegisterWrite);
-		and  #(50) gate24(WriteEnable[24], OutputEnable[24], RegisterWrite);
-		and  #(50) gate25(WriteEnable[25], OutputEnable[25], RegisterWrite);
-		and  #(50) gate26(WriteEnable[26], OutputEnable[26], RegisterWrite);
-		and  #(50) gate27(WriteEnable[27], OutputEnable[27], RegisterWrite);
-		and  #(50) gate28(WriteEnable[28], OutputEnable[28], RegisterWrite);
-		and  #(50) gate29(WriteEnable[29], OutputEnable[29], RegisterWrite);
-		and  #(50) gate30(WriteEnable[30], OutputEnable[30], RegisterWrite);
-		and  #(50) gate31(WriteEnable[31], OutputEnable[31], RegisterWrite);
+		and  #(50) a0(WriteEnable[1], OutputEnable[1], RegisterWrite);
+		and  #(50) a1(WriteEnable[2], OutputEnable[2], RegisterWrite);
+		and  #(50) a2(WriteEnable[3], OutputEnable[3], RegisterWrite);
+		and  #(50) a3(WriteEnable[4], OutputEnable[4], RegisterWrite);
+		and  #(50) a4(WriteEnable[5], OutputEnable[5], RegisterWrite);
+		and  #(50) a5(WriteEnable[6], OutputEnable[6], RegisterWrite);
+		and  #(50) a6(WriteEnable[7], OutputEnable[7], RegisterWrite);
+		and  #(50) a7(WriteEnable[8], OutputEnable[8], RegisterWrite);
+		and  #(50) a8(WriteEnable[9], OutputEnable[9], RegisterWrite);
+		and  #(50) a9(WriteEnable[10], OutputEnable[10], RegisterWrite);
+		and  #(50) a10(WriteEnable[11], OutputEnable[11], RegisterWrite);
+		and  #(50) a11(WriteEnable[12], OutputEnable[12], RegisterWrite);
+		and  #(50) a12(WriteEnable[13], OutputEnable[13], RegisterWrite);
+		and  #(50) a13(WriteEnable[14], OutputEnable[14], RegisterWrite);
+		and  #(50) a14(WriteEnable[15], OutputEnable[15], RegisterWrite);
+		and  #(50) a15(WriteEnable[16], OutputEnable[16], RegisterWrite);
+		and  #(50) a16(WriteEnable[17], OutputEnable[17], RegisterWrite);
+		and  #(50) a17(WriteEnable[18], OutputEnable[18], RegisterWrite);
+		and  #(50) a18(WriteEnable[19], OutputEnable[19], RegisterWrite);
+		and  #(50) a19(WriteEnable[20], OutputEnable[20], RegisterWrite);
+		and  #(50) a20(WriteEnable[21], OutputEnable[21], RegisterWrite);
+		and  #(50) a21(WriteEnable[22], OutputEnable[22], RegisterWrite);
+		and  #(50) a22(WriteEnable[23], OutputEnable[23], RegisterWrite);
+		and  #(50) a23(WriteEnable[24], OutputEnable[24], RegisterWrite);
+		and  #(50) a24(WriteEnable[25], OutputEnable[25], RegisterWrite);
+		and  #(50) a25(WriteEnable[26], OutputEnable[26], RegisterWrite);
+		and  #(50) a26(WriteEnable[27], OutputEnable[27], RegisterWrite);
+		and  #(50) a27(WriteEnable[28], OutputEnable[28], RegisterWrite);
+		and  #(50) a28(WriteEnable[29], OutputEnable[29], RegisterWrite);
+		and  #(50) a29(WriteEnable[30], OutputEnable[30], RegisterWrite);
+		and  #(50) a30(WriteEnable[31], OutputEnable[31], RegisterWrite);
 
 endmodule
 
@@ -177,7 +177,7 @@ module AndMore(G, A, B, C, D, E);
 
 	output G;
 	input A, B, C, D, E;
-	and #(50) a1(F1, A, B, C, D), a2(G, F1, E);
+	and #(50) a0(F1, A, B, C, D), a1(G, F1, E);
 
 endmodule
 
@@ -270,16 +270,16 @@ module MUX32to1(Output, Input, Select);
 	and  #(50) a29(F[29], OutputEnable[29], Input[29]);
 	and  #(50) a30(F[30], OutputEnable[30], Input[30]);
 	and  #(50) a31(F[31], OutputEnable[31], Input[31]);
-	or #(50) o3(G3, F[0], F[1], F[2], F[3]);
-	or #(50) o4(G4, F[4], F[5], F[6], F[7]);
-	or #(50) o5(G5, F[8], F[9], F[10], F[11]);
-	or #(50) o6(G6, F[12], F[13], F[14], F[15]);
-	or #(50) o7(G7, F[16], F[17], F[18], F[19]);
-	or #(50) o8(G8, F[20], F[21], F[22], F[23]);
-	or #(50) o9(G9, F[24], F[25], F[26], F[27]);
-	or #(50) o10(G10, F[28], F[29], F[30], F[31]);
-	or #(50) o11(G11, G3, G4, G5, G6);
-	or #(50) o12(G12, G7, G8, G9, 10);
+	or #(50) o0(G3, F[0], F[1], F[2], F[3]);
+	or #(50) o1(G4, F[4], F[5], F[6], F[7]);
+	or #(50) o2(G5, F[8], F[9], F[10], F[11]);
+	or #(50) o3(G6, F[12], F[13], F[14], F[15]);
+	or #(50) o4(G7, F[16], F[17], F[18], F[19]);
+	or #(50) o5(G8, F[20], F[21], F[22], F[23]);
+	or #(50) o6(G9, F[24], F[25], F[26], F[27]);
+	or #(50) o7(G10, F[28], F[29], F[30], F[31]);
+	or #(50) o8(G11, G3, G4, G5, G6);
+	or #(50) o9(G12, G7, G8, G9, 10);
 	or #(50) o(Output, G11, G12);
 
 endmodule

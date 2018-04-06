@@ -30,6 +30,7 @@ module DiscardInstructions(IDFlush, IFFlush, Jump, BNE, JR);
 
 	output IDFlush, IFFlush;
 	input Jump, BNE, JR;
+
 	or #50 o0(IFFlush, Jump, BNE, JR);
 	or #50 o1(IDFlush, BNE, JR);
 

@@ -46,17 +46,17 @@ endmodule
 
 
 `timescale 1 ps / 100 fs
-module MUX2x5to5(AdderOut, Adder0, Adder1, Selector);
+module MUX2x5to5(AdderOutput, Adder0, Adder1, Selector);
 
-	output[4:0] AdderOut;
+	output[4:0] AdderOutput;
 	input[4:0] Adder0, Adder1;
 	input Selector;
 
-	MUX21 mux0(AdderOut[0], Adder0[0], Adder1[0], Selector);
-	MUX21 mux1(AdderOut[1], Adder0[1], Adder1[1], Selector);
-	MUX21 mux2(AdderOut[2], Adder0[2], Adder1[2], Selector);
-	MUX21 mux3(AdderOut[3], Adder0[3], Adder1[3], Selector);
-	MUX21 mux4(AdderOut[4], Adder0[4], Adder1[4], Selector);
+	MUX21 mux0(AdderOutput[0], Adder0[0], Adder1[0], Selector);
+	MUX21 mux1(AdderOutput[1], Adder0[1], Adder1[1], Selector);
+	MUX21 mux2(AdderOutput[2], Adder0[2], Adder1[2], Selector);
+	MUX21 mux3(AdderOutput[3], Adder0[3], Adder1[3], Selector);
+	MUX21 mux4(AdderOutput[4], Adder0[4], Adder1[4], Selector);
 
 endmodule
 

@@ -11,7 +11,7 @@ module InstructionMemory(Instruction, Address);
 	reg[31:0] Instructionmemory[1023:0];
 	reg[31:0] Temp;
 
-	buf 
+	buf
 		#1000 buf0(Instruction[0], Temp[0]),
 		buf1(Instruction[1], Temp[1]),
 		buf2(Instruction[2], Temp[2]),

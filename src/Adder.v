@@ -50,8 +50,8 @@ module Adder1Bit(Sum, Cout, A, B, Cin);
 	output Cout, Sum;
 	input A, B, Cin;
 
-	xor #(50) (Sum, A, B, Cin);			// Sum = A xor B xor Cin
-	and #(50) a1(C1, A, B);				// carry out = (a and b) or (cin and (a or b))
+	xor #(50) (Sum, A, B, Cin);
+	and #(50) a1(C1, A, B);
 	or #(50) o1(C2, A, B);
 	and #(50) a2(C3, C2, Cin);
 	or #(50) o2(Cout, C1, C3);

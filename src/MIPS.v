@@ -19,7 +19,7 @@ module MIPSPipeline(CLK, Reset);
 	wire[31:0] Bus_A_ALU, Bus_B_ALU, Bus_B_Forwarded;
 	wire[31:0] EX_ALUResult, MEM_ALUResult, WB_ALUResult;
 	wire ZeroFlag, OverflowFlag, CarryFlag, NegativeFlag, NotZeroFlag;
-	wire[31:0] WriteDataOfMem, MEM_ReadDataOfMem, WB_ReadDataOfMem;
+	wire[31:0] WriteDataOfMemory, MEM_ReadDataOfMemory, WB_ReadDataOfMemory;
 	wire RegisterDestination, ALUSource, MemoryToRegister, RegisterWrite, MemoryRead, MemoryWrite, Branch, Jump, SignZero, JRControl;
 	wire ID_RegisterDestination, ID_ALUSource, ID_MemoryToRegister, ID_RegisterWrite, ID_MemoryRead, ID_MemoryWrite, ID_Branch, ID_JRControl;
 	wire EX_RegisterDestination, EX_ALUSource, EX_MemoryToRegister, EX_RegisterWrite, EX_MemoryRead, EX_MemoryWrite, EX_Branch, EX_JRControl;
@@ -97,7 +97,7 @@ module MIPSPipeline(CLK, Reset);
 	MUX2x5to5 mux4(EX_WriteRegister, EX_rt, EX_rd, EX_RegisterDestination);
 
 	Register reg8(MEM_ALUResult, EX_ALUResult, 1'b1, Reset, CLK);
-	Register reg9(WriteDataOfMem, Bus_B_Forwarded, 1'b1, Reset, CLK);
+	Register reg9(WriteDataOfMemory, Bus_B_Forwarded, 1'b1, Reset, CLK);
 	RegisterBit bit11(MEM_MemoryToRegister, EX_MemoryToRegister, 1'b1, Reset, CLK);
 	RegisterBit bit12(MEM_RegisterWrite, EX_RegisterWrite, 1'b1, Reset, CLK);
 	RegisterBit bit13(MEM_MemoryRead, EX_MemoryRead, 1'b1, Reset, CLK);
@@ -108,9 +108,9 @@ module MIPSPipeline(CLK, Reset);
 	RegisterBit bit18(MEM_WriteRegister[1], EX_WriteRegister[1], 1'b1, Reset, CLK);
 	RegisterBit bit19(MEM_WriteRegister[0], EX_WriteRegister[0], 1'b1, Reset, CLK);
 
-	DataMemory dm0(MEM_ReadDataOfMem, MEM_ALUResult, WriteDataOfMem, MEM_MemoryWrite, MEM_MemoryRead, CLK);
+	DataMemory dm0(MEM_ReadDataOfMemory, MEM_ALUResult, WriteDataOfMemory, MEM_MemoryWrite, MEM_MemoryRead, CLK);
 
-	Register reg10(WB_ReadDataOfMem, MEM_ReadDataOfMem, 1'b1, Reset, CLK);
+	Register reg10(WB_ReadDataOfMemory, MEM_ReadDataOfMemory, 1'b1, Reset, CLK);
 	Register reg11(WB_ALUResult, MEM_ALUResult, 1'b1, Reset, CLK);
 	RegisterBit bit20(WB_WriteRegister[4], MEM_WriteRegister[4], 1'b1, Reset, CLK);
 	RegisterBit bit21(WB_WriteRegister[3], MEM_WriteRegister[3], 1'b1, Reset, CLK);
@@ -120,7 +120,7 @@ module MIPSPipeline(CLK, Reset);
 	RegisterBit bit25(WB_MemoryToRegister, MEM_MemoryToRegister, 1'b1, Reset, CLK);
 	RegisterBit bit26(WB_RegisterWrite, MEM_RegisterWrite, 1'b1, Reset, CLK);
 
-	MUX2x32to32 mux5(WB_WriteData, WB_ALUResult, WB_ReadDataOfMem, WB_MemoryToRegister);
+	MUX2x32to32 mux5(WB_WriteData, WB_ALUResult, WB_ReadDataOfMemory, WB_MemoryToRegister);
 
 	StallControl sc0(PC_WriteEnable, IFID_WriteEnable, StallFlush, EX_MemoryRead, EX_rt, Rs, Rt, OperationCode);
 

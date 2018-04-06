@@ -52,6 +52,6 @@ module StallControl(PC_WriteEnable, IFID_WriteEnable, StallFlush, EX_MemoryRead,
 
 	not #(50) inv2(PC_WriteEnable, Condition);
 	not #(50) inv3(IFID_WriteEnable, Condition);
-	buf #(50) bufStallflush(Stall_flush, Condition);
+	buf #(50) bufStallflush(StallFlush, Condition);
 
 endmodule
