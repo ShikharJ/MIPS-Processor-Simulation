@@ -1,7 +1,7 @@
 // Control Unit Module
 
-// Verilog code for Control Unit.
 
+// Verilog code for Control Unit.
 `timescale 1 ps / 100 fs
 module Control(RegisterDestination, ALUSource, MemoryToRegister, RegisterWrite, MemoryRead, MemoryWrite, Branch, ALUOperation, Jump, SignZero, OperationCode);
 
@@ -13,7 +13,7 @@ module Control(RegisterDestination, ALUSource, MemoryToRegister, RegisterWrite, 
 
 	always @(*)
 		casex (OperationCode)
-			6'b000000:
+			6'b000000:								// R => Type
 				begin
 					RegisterDestination = 1'b1;
 					ALUSource = 1'b0;
@@ -26,7 +26,7 @@ module Control(RegisterDestination, ALUSource, MemoryToRegister, RegisterWrite, 
 					Jump = 1'b0;
 					SignZero = 1'b0;
 				end
-			6'b100011:
+			6'b100011:								// LW => Load Word
 				begin
 					RegisterDestination = 1'b0;
 					ALUSource = 1'b1;
@@ -39,7 +39,7 @@ module Control(RegisterDestination, ALUSource, MemoryToRegister, RegisterWrite, 
 					Jump = 1'b0;
 					SignZero = 1'b0;
 				end
-			6'b101011: 
+			6'b101011:								// SW => Store Word
 				begin
 					RegisterDestination = 1'bx;
 					ALUSource = 1'b1;
@@ -52,7 +52,7 @@ module Control(RegisterDestination, ALUSource, MemoryToRegister, RegisterWrite, 
 					Jump = 1'b0;
 					SignZero = 1'b0;
 				end
-			6'b000101:
+			6'b000101:								// BNE => Branch Not Equal
 				begin
 					RegisterDestination = 1'b0;
 					ALUSource = 1'b0;
@@ -65,7 +65,7 @@ module Control(RegisterDestination, ALUSource, MemoryToRegister, RegisterWrite, 
 					Jump = 1'b0;
 					SignZero = 1'b0;
 				end
-			6'b001110:
+			6'b001110:								// XorI => Xor Immediate
 				begin
 					RegisterDestination = 1'b0;
 					ALUSource = 1'b1;
@@ -78,7 +78,7 @@ module Control(RegisterDestination, ALUSource, MemoryToRegister, RegisterWrite, 
 					Jump = 1'b0;
 					SignZero = 1'b1;
 				end
-			6'b000010:
+			6'b000010:								// J => Jump
 				begin
 					RegisterDestination = 1'b0;
 					ALUSource = 1'b0;

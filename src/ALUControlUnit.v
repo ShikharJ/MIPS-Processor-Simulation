@@ -1,7 +1,7 @@
 // ALU Control Unit Module
 
-// Verilog code for ALU Control Unit.
 
+// Verilog code for ALU Control Unit.
 `timescale 1 ps / 100 fs
 module ALUControlUnit(ALUControl, ALUOperation, Function);
 

@@ -1,7 +1,7 @@
 // Extension Modules
 
-// Verilog code for Zero Extension, Sign Extension and Shift Left 2.
 
+// Verilog code for Zero Extension module.
 `timescale 1 ps/ 100 fs
 module ZeroExtension(ZOutput32, ZInput16);
 
@@ -13,6 +13,7 @@ module ZeroExtension(ZOutput32, ZInput16);
 endmodule
 
 
+// Verilog code for Sign Extension module.
 module SignExtension(SOutput32, SInput16);
 
 	output[31:0] SOutput32;
@@ -23,6 +24,7 @@ module SignExtension(SOutput32, SInput16);
 endmodule
 
 
+// Verilog code for Shift Left by 2 module.
 module ShiftLeft2(Output32, Input32);
 
 	output[31:0] Output32;

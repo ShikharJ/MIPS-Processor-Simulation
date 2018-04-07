@@ -1,7 +1,7 @@
 // MIPSStimulus Module
 
-// Verilog Testbench code for 32-bit Pipelined MIPS Processor.
 
+// Verilog testbench code for 32-bit Pipelined MIPS Processor.
 `timescale 1 ps / 100 fs
 module MIPSStimulus();
 

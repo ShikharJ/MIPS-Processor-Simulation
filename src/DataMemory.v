@@ -1,7 +1,7 @@
 // Data Memory Module
 
-// Verilog code for Data Memory.
 
+// Verilog code for Data Memory module.
 `timescale 1 ps / 100 fs
 module DataMemory(Data, Address, WriteData, WriteEnable, MemoryRead, CLK);
 

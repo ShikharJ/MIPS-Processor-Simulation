@@ -1,9 +1,9 @@
 // 32-bit Adder Module
 
-// Verilog code for 32-bit adder.
 
+// Verilog code for 32-bit Adder, iterating over single bits.
 `timescale 1 ps / 100 fs
-module Add(Z, A, B);
+module Adder(Z, A, B);
 
 	output[31:0] Z;
 	input[31:0] A, B;
@@ -45,15 +45,16 @@ module Add(Z, A, B);
 endmodule
 
 
+// Verilog code for single bit adder.
 module Adder1Bit(Sum, Cout, A, B, Cin);
 
 	output Cout, Sum;
 	input A, B, Cin;
 
-	xor #(50) (Sum, A, B, Cin);
+	xor #(50) (Sum, A, B, Cin);				// Sum = A xor B xor Cin
 	and #(50) a1(C1, A, B);
 	or #(50) o1(C2, A, B);
 	and #(50) a2(C3, C2, Cin);
-	or #(50) o2(Cout, C1, C3);
+	or #(50) o2(Cout, C1, C3);				// Cout = (A and B) or (Cin and (A or B))
 
-endmodule 
+endmodule

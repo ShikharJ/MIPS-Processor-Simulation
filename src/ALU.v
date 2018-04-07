@@ -1,7 +1,7 @@
 // 32-bit ALU Module
 
-// Verilog code for ALU block of the MIPS Processsor.
 
+// Verilog code for 32-bit ALU of the MIPS Processsor, iterating over single bits.
 `timescale 1ps / 100 fs
 module ALU(Output, CarryOut, Zero, Overflow, Negative, BusA, BusB, ALUControl);
 
@@ -46,10 +46,10 @@ module ALU(Output, CarryOut, Zero, Overflow, Negative, BusA, BusB, ALUControl);
 	ALU1bit alu31(Output[31], Carryout[31], BusA[31], BusB[31], Carryout[30], 1'b0, ALUControl);
 
 	not #(50) inv0(NotCarryout31, Carryout[31]);
-	MUX21 mux0(CarryOut, Carryout[31], NotCarryout31, ALUControl[1]);
+	MUX21 mux0(CarryOut, Carryout[31], NotCarryout31, ALUControl[1]);	// CarryOut = NotCarryout31 if it is subtraction
 	xor #(50) x0(Overflow, Carryout[30], Carryout[31]);
 
-	AddSubtract addsub0(AddSubtract31Output, Carryout31, BusA[31], BusB[31], Carryout[30], ALUControl[1]);
+	AddSubtract addsub0(AddSubtract31Output, Carryout31, BusA[31], BusB[31], Carryout[30], ALUControl[1]);		// SLT
 	xor #(50) x1(LessThan, Overflow, AddSubtract31Output);
 	assign
 		Negative = Output[31];
@@ -68,6 +68,7 @@ module ALU(Output, CarryOut, Zero, Overflow, Negative, BusA, BusB, ALUControl);
 endmodule
 
 
+// Verilog code for single bit ALU module.
 `timescale 1 ps / 100 fs
 module ALU1bit(Result, CarryOut, A, B, CarryIn, Less, ALUControl);
 
@@ -83,43 +84,15 @@ module ALU1bit(Result, CarryOut, A, B, CarryIn, Less, ALUControl);
 endmodule
 
 
+// Verilog code for customised Addition and Subtraction module.
 `timescale 1 ps / 100 fs
 module AddSubtract(Output, Cout, A, B, Cin, Selector);
 
-	output Output, Cout;
+	output Output, Cout;			// Result and Carryout
 	input A, B, Cin, Selector;
 
 	not #(50) inv0(NotB, B);
 	MUX21 mux0(B1, B, NotB, Selector);
-	Adder adder0(Output, Cout, A, B1, Cin);
-
-endmodule
-
-
-`timescale 1 ps / 100 fs
-module Adder(Sum, Cout, A, B, Cin);
-
-	output Cout, Sum;
-	input A, B, Cin;
-
-	xor #(50) (Sum, A, B, Cin);
-	and #(50) a0(C1, A, B);
-	or #(50) o0(C2, A, B);
-	and #(50) a1(C3, C2, Cin);
-	or #(50) o1(Cout, C1, C3);
-
-endmodule
-
-
-`timescale 1 ps / 100 fs
-module MUX21(O, A, B, Selector);
-
-	output O;
-	input A, B, Selector;
-
-	not #(50) inv0(NotSelector, Selector);
-	and #(50) a0(O1, A, NotSelector);
-	and #(50) a1(O2, B, Selector);
-	or #(50) o0(O, O1, O2);
+	Adder1Bit adder0(Output, Cout, A, B1, Cin);
 
 endmodule

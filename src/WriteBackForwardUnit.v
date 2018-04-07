@@ -1,7 +1,8 @@
 // Write Back Forward Module
 
-// Verilog code for Write Back Forward Unit and Address Comparison Unit.
 
+// Verilog code for Write Back Forward module.
+// Write Back Hazard: Reading Data While Writing.
 `timescale 1 ps / 100 fs
 module WBForward(ReadData1Output, ReadData2Output, ReadData1, ReadData2, Rs, Rt, WriteRegister, WriteData, RegisterWrite);
 
@@ -12,6 +13,7 @@ module WBForward(ReadData1Output, ReadData2Output, ReadData1, ReadData2, Rs, Rt,
 	wire ReadSourceRs, ReadSourceRt;
 	wire CompareOutput1, CompareOutput2;
 
+	// Structural Model
 	or #(50) o0(OrOutput1, WriteRegister[4], WriteRegister[3], WriteRegister[2], WriteRegister[1], WriteRegister[0]);
 	CompareAddress Compare1(CompareOutput1, WriteRegister, Rs);
 	and #(50) a0(ReadSourceRs, RegisterWrite, OrOutput1, CompareOutput1);
@@ -25,6 +27,7 @@ module WBForward(ReadData1Output, ReadData2Output, ReadData1, ReadData2, Rs, Rt,
 endmodule
 
 
+// Verilog code for Address Comparison module.
 `timescale 1 ps / 100 fs
 module CompareAddress(Equal, Address1, Address2);
 

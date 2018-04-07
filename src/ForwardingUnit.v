@@ -1,7 +1,7 @@
 // Forwarding Unit Module
 
-// Verilog code for Forwarding Unit.
 
+// Verilog code for Forwarding Unit.
 `timescale 1 ps / 100 fs
 module ForwardingUnit(ForwardA, ForwardB, MEM_RegisterWrite, WB_RegisterWrite, MEM_WriteRegister, WB_WriteRegister, EX_rs, EX_rt);
 
@@ -10,13 +10,13 @@ module ForwardingUnit(ForwardA, ForwardB, MEM_RegisterWrite, WB_RegisterWrite, M
 	input MEM_RegisterWrite, WB_RegisterWrite;
 	input[4:0] MEM_WriteRegister, WB_WriteRegister, EX_rs, EX_rt;
 
-	or #(50) o0(A, MEM_WriteRegister[4], MEM_WriteRegister[3], MEM_WriteRegister[2], MEM_WriteRegister[1], MEM_WriteRegister[0]);
+	or #(50) o0(A, MEM_WriteRegister[4], MEM_WriteRegister[3], MEM_WriteRegister[2], MEM_WriteRegister[1], MEM_WriteRegister[0]);		// A = 1 if MEM_WriteRegister != 0
 	CompareAddress CompMEM_WriteReg_EXrs(B, MEM_WriteRegister, EX_rs);
-	and #(50) a0(X, MEM_RegisterWrite, A, B);
+	and #(50) a0(X, MEM_RegisterWrite, A, B);			// X = 1 if MEM_RegWrite == 1 and MEM_WriteRegister != 0 and MEM_WriteRegister == EX_rs
 
-	or #(50) o1(C, WB_WriteRegister[4], WB_WriteRegister[3], WB_WriteRegister[2], WB_WriteRegister[1], WB_WriteRegister[0]);
+	or #(50) o1(C, WB_WriteRegister[4], WB_WriteRegister[3], WB_WriteRegister[2], WB_WriteRegister[1], WB_WriteRegister[0]);		// C = 1 if WB_WriteRegister != 0
 	CompareAddress CompWB_WriteReg_EXrs(D, WB_WriteRegister, EX_rs);
-	and #(50) a1(Y, WB_RegisterWrite, C, D);
+	and #(50) a1(Y, WB_RegisterWrite, C, D);			// Y = 1 if WB_RegWrite == 1 and WB_WriteRegister != 0 and WB_WriteRegister == EX_rs
 
 	assign ForwardA[1] = X;
 	not #(50) inv0(NotX, X);

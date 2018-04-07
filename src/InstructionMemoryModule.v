@@ -1,8 +1,9 @@
 // Instruction Memory Module
 
+
 // This module is used to setup the instruction set for the MIPS processor.
 // Change the $readmemb line to have the name of the program you want to load.
-
+// For using instructions in hexadecimal format, replace the $readmemb by $readmemh.
 `timescale 1 ps / 100 fs
 module InstructionMemory(Instruction, Address);
 
@@ -51,12 +52,15 @@ module InstructionMemory(Instruction, Address);
 		end
 	initial
 		begin
-			$readmemb("/home/shikhar/MIPS-Processor-Simulation/src/instructions.txt", Instructionmemory);
+			$readmemb("/home/shikhar/MIPS-Processor-Simulation/src/instructions.txt", Instructionmemory);		//Change the absolute path according to requirement.
 		end
 
 endmodule
 
 
+// Verilog code for stimulating the InstructionMemory() module.
+// Only memory address is changed here, instructions are loaded
+// from the "instructions.txt" file.
 module InstructionMemoryStimulus();
 	
 	reg[31:0] Address;

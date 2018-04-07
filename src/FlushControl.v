@@ -1,7 +1,7 @@
 // Flush Control Module
 
-// Verilog code for Flush Control Unit and Discard Instructions Unit.
 
+// Verilog code for Flush Control module.
 `timescale 1 ps / 100 fs
 module FlushBlock(ID_RegisterDestination, ID_ALUSource, ID_MemoryToRegister, ID_RegisterWrite, ID_MemoryRead, ID_MemoryWrite, ID_Branch, ID_ALUOperation, ID_JRControl, Flush, RegisterDestination, ALUSource, MemoryToRegister, RegisterWrite, MemoryRead, MemoryWrite, Branch, ALUOperation, JRControl);
 
@@ -25,6 +25,7 @@ module FlushBlock(ID_RegisterDestination, ID_ALUSource, ID_MemoryToRegister, ID_
 endmodule
 
 
+// Verilog code for discarding instructions when needed.
 `timescale 1 ps / 100 fs
 module DiscardInstructions(IDFlush, IFFlush, Jump, BNE, JR);
 

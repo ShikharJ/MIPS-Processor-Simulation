@@ -1,7 +1,7 @@
 // JR Control Unit Module
 
-// Verilog code for JR Control Unit.
 
+// Verilog code for JR Control Unit.
 `timescale 1 ps / 100 fs
 module JRControlUnit(JRControl, ALUOperation, Function);
 
