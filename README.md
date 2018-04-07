@@ -4,7 +4,7 @@ Verilog-based Pipelined MIPS Processor Simulation.
 This project is still in its nascent stage. The simulation works fine for now, but probably can be optimized in many ways.
 
 ## Usage
-The entire simulation can be tested by simulating the `MIPSStimulus.v` file using `ModelSim`.
+The entire simulation can be tested by simulating the `MIPSStimulus.v` file using `ModelSim`. Currently, the instructions form a testing pipeline and have been converted into binary to work.
 
 ## Documentation
 Most of the codebase has inline comments added, and follows from the standard 5-stage MIPS pipeline as follows:
