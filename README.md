@@ -11,5 +11,10 @@ Most of the codebase has inline comments added, and follows from the standard 5-
 
 ![](/images/schematic.png)
 
+## Test Run
+
+![](/images/1.png)
+![](/images/2.png)
+
 ## Additional
 Suggestions and Pull Requests are always welcome, as I'm just a beginner in the field of `Verilog` programming.
